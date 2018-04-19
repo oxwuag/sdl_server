@@ -13,7 +13,7 @@
                     v-model="environment"
                     :options="environmentOptions"
                     name="chooseEnvironment" />
-        
+
                 <div class="pull-right">
                     <b-btn v-if="environment == 'STAGING' && can_promote" v-b-modal.promoteModal class="btn btn-style-green btn-sm align-middle">Promote changes to production</b-btn>
                 </div>
@@ -143,9 +143,11 @@
                 });
             },
             "environmentClick": function () {
-                //get high level message data
-                this.getConsumerMessageInfo(messages => {
-                    this.consumer_messages = messages;
+                this.$nextTick(function () {
+                    //get high level message data
+                    this.getConsumerMessageInfo(messages => {
+                        this.consumer_messages = messages;
+                    });
                 });
             }
         },

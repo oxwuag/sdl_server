@@ -199,11 +199,13 @@
         },
         methods: {
             "environmentClick": function () {
-                this.functional_groups = [];
-                //get high level functional group data
-                this.getFunctionalGroupData();
-                //get unmapped permissions
-                this.getUnmappedPermissions();
+                this.$nextTick(function () {
+                    this.functional_groups = [];
+                    //get high level functional group data
+                    this.getFunctionalGroupData();
+                    //get unmapped permissions
+                    this.getUnmappedPermissions();
+                });
             },
             "getFunctionalGroupData": function () {
                 this.$http.get("groups?environment=" + this.environment, {})
